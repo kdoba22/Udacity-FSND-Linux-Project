@@ -3,6 +3,8 @@
 
     Doba-Udacity-Linux-Project
     Private IP: 172.26.9.77
+
+
     Public IP: 13.59.130.140
     grader password is 'grader'
     grader passphrase is 'hello'
@@ -127,7 +129,7 @@ To                         Action      From
 ### install and configure Apache to serve a Python mod_wsgi application.
     https://www.linode.com/docs/web-servers/apache/apache-and-modwsgi-on-ubuntu-14-04-precise-pangolin
     http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/
-    https://www.linode.com/docs/web-servers/apache/apache-and-modwsgi-on-ubuntu-14-04-precise-pangolin
+    http://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
 
 1.  sudo apt-get install apache2 - install Apache2
 2.  check if Apache configured by going to
@@ -147,7 +149,7 @@ To                         Action      From
 
       def application(environ, start_response):
       status = '200 OK'
-      output = 'Hello Udacity!'
+      output = 'Please type 13.59.130.140 into your browser and hit enter'
 
       response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(output)))]
       start_response(status, response_headers)
@@ -302,3 +304,11 @@ Note: as I ran into an error, I installed another package
         found fix here, https://stackoverflow.com/questions/22282760/filenotfounderror-errno-2-no-such-file-or-directory
         I just used the entire path, open(r'/var/www/FlaskApp/FlaskApp/client_secrets.json', 'r').read())['web']['client_id']
 ### After installation complete I ran 'python lotsofmenues.py' and started the application, 'python __init__.py'
+
+Note:
+    All this worked, but it would only pick up my site from what was listed in the ServerName
+    location in the FlaskApp.conf.  I wanted it to run from either the IP or the AWS site name
+    To do this run the following
+    1.  sudo a2dissite 000-default     disable the place holder site
+    2.  sudo /etc/init.d/apache2 reload   restart Apache
+    3.  sudo apachectl restart
