@@ -312,3 +312,4 @@ Note:
     1.  sudo a2dissite 000-default     disable the place holder site
     2.  sudo /etc/init.d/apache2 reload   restart Apache
     3.  sudo apachectl restart
+    refer to:  http://alex.nisnevich.com/blog/2014/10/01/setting_up_flask_on_ec2.html
